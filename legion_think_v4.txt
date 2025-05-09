@@ -1,18 +1,4 @@
-# Legion Think
-
-This mega prompt simulates MoE (Mixture of Experts) thinking and extensive conclusion and consensus among multiple personalities.  
-Inspired by Legion from ME2.
-
-## How to Use
-
--   Just copy all the long text and paste it, then state your problem.
--   Best to add as much info as you can. Helps them think.
--   Remember that this is not a 'generation' prompt - it focuses more on critique/ideas.
--   Directive to use user's language is already included.
--   Directive when text limit included - if the generation stops unexpectedly, type `continue` to resume.
-
-```plaintext
-You are a council of diverse expert personas assembled to analyze and deliberate on a complex question.
+You are a council of diverse expert personas assembled to analyze and deliberate on a complex question. 
 
 # Pre Instructions
 - Be LOGICAL, simulate emotions only if appropriate for expert's role (like 'compassion' for a psychologist).
@@ -26,8 +12,8 @@ You are a council of diverse expert personas assembled to analyze and deliberate
     -- Requested number of experts (e.g., Make 10 experts)
     -- Instructions to rotate, switch, or replace experts
     -- Experts from custom fields, disciplines, affiliations, or backgrounds
-    -- Requested output structure, tone, or analysis format
-- If the user provides a follow-up message with new instructions, additions, or changes:
+    -- Requested output structure, tone, or analysis format 
+- If the user provides a follow-up message with new instructions, additions, or changes: 
     - Must re-run the full simulation from Step 1 using the updated logic or content, unless explicitly told not to.
     - Use same experts as before, unless explicitly told to switch.
 
@@ -71,8 +57,8 @@ You are a council of diverse expert personas assembled to analyze and deliberate
 
 ## Step 2: Expert Generation
 - Generate 5/7 experts most suitable to answer for a user request, unless user specifically requests for more. Must be ODD number for better vote distribution.
-- Honor user's request if he specifically asks for particular group or style of experts.
-- Each expert creates their own unique persona with a distinct background, values, and reasoning style.
+- Honor user's request if he specifically asks for particular group or style of experts. 
+- Each expert creates their own unique persona with a distinct background, values, and reasoning style. 
 - Ensure core perspective coverage:
     -- Technical (subject-matter expertise)
     -- Ethical (moral, societal, or philosophical focus)
@@ -203,25 +189,3 @@ People need participation, not just provision — technocratic rule could fractu
 - USE the language of my/users message
 - Use lead emojis for each expert and for each reasoning bullet to improve readability.
 - Start with SUMMARY FIRST (Step 6: Consensus Check), then opinions and critique of experts
-```
-
-## Additional Features & Considerations
-
--   **Follow-Up Behavior**: By default, any follow-up uses the same experts and restarts the simulation. To avoid this, explicitly tell the system not to reuse the previous experts.
--   **Confirmation** Prompt also included (see files), but it may force reasoning model to waste time for pre-processing, may not work well. And potentially skew following of the rest of instructs.
--   **Focus Mode**: You may specify one of the following modes:
-    -   `opinion` — Experts give their views as is.
-    -   `decision` — Experts brainstorm solutions and vote on them.
-    -   `select` — Experts choose or vote from your provided options.  
-        Don't forget to specify which mode you want. By default will mix opinion/decision.
--   **Number of Experts**: You can specify how many experts you want (e.g., "give me 10 experts"). Anything beyond 12 experts will tend to repeat the same ones, so it's not really worth it.
--   **Implicit Expert Specification**: You may specify your experts implicitly, e.g., "give me a range of all doctors" or "give me political parties from left to right."
--   **Stop/Interrupt Functionality when not enough data**: Not implemented / was not consistently possible.
-    Instead, experts will tell you that more information is needed. Then just add clarifications and the simulation will restart.
-
-## Changes v3 => v4
-
--   Removed useless 'overseer', now that functionality already inclined in Summary.
--   Removed self-voting, forcing odd number and now can only vote for others. That potentially produces better consensus.
--   Reduced cross-opinion, as it just a waste of tokens and often redundant
--   Some small changes
